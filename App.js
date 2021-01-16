@@ -93,15 +93,7 @@ export default function App() {
     <SafeAreaView style={styles.container}>
       <InstaHeader />
       <View>
-      {
-        [
-          'pripinheiro', 
-          'vweberfroes', 
-          'omariosouto', 
-          'peas'
-        ].map((githubUser) => 
-          <InstaStories key={githubUser} githubUser={githubUser}/>
-          )} 
+    
       </View>
       <ScrollView>
       {
