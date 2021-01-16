@@ -9,7 +9,7 @@ Project created to study React Native.
 
 ## _Preview_
 
-![](/assets/insta.gif)
+![](/assets/copyinsta.gif)
 
 
 **This page is still under construction** :construction_worker:
