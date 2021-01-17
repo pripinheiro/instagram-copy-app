@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { StatusBar } from 'expo-status-bar';
 import { 
   StyleSheet, 
-  Text, 
+  Text,
+  TextInput, 
   View, 
   Image, 
   ScrollView,
@@ -15,7 +15,7 @@ function InstaHeader() {
   return (
     <View style={styles.header}>
       <View style={styles.nameHeader}>
-        <Text>Instagram</Text>
+        <Text style={styles.logoHeader}>Instagram</Text>
       </View>
 
       <View style={styles.iconsHeader}>
@@ -33,16 +33,32 @@ function InstaHeader() {
   )
 }
 
-function InstaStories({githubUser}) {
+function InstaStories() {
   return (
     <View style={styles.stories}>
       <View style={styles.profileStories}>
         <Image
-          style={styles.profileImg} 
+          style={styles.imageStories}
           source={{ 
-            uri: `https://github.com/${githubUser}.png`
+            uri: `https://github.com/pripinheiro.png`
           }}/>
-          <Text>{githubUser}</Text>
+          <Text>Your Story</Text>
+      </View>
+      <View style={styles.profileStories}>
+        <Image
+          style={styles.imageStories}
+          source={{ 
+            uri: `https://github.com/vweberfroes.png`
+          }}/>
+          <Text>vweberfroes</Text>
+      </View>
+      <View style={styles.profileStories}>
+        <Image
+          style={styles.imageStories}
+          source={{ 
+            uri: `https://github.com/omariosouto.png`
+          }}/>
+          <Text>omariosouto</Text>
       </View>
     </View>
   )
@@ -50,6 +66,7 @@ function InstaStories({githubUser}) {
 
 function InstaCards({ githubUser }) {
   const [liked, setLike] = useState(false);
+  const [comment, setComment] = useState('');
   return (
     <View>
       <View style={styles.cards}>
@@ -58,7 +75,7 @@ function InstaCards({ githubUser }) {
         source={{ 
           uri: `https://github.com/${githubUser}.png`
         }}/>
-        <Text>{githubUser}</Text>
+        <Text style={styles.profileName}>{githubUser}</Text>
       </View>
       
       <View>
@@ -83,6 +100,19 @@ function InstaCards({ githubUser }) {
           <Feather name="send" size={24} color="black" />
         </View>
       </View>
+      <View style={styles.addComment}>
+        <Image 
+          style={styles.imageComment}
+          source={{ 
+            uri: `https://github.com/pripinheiro.png`
+          }}
+        />
+        <TextInput 
+         placeholder='Add comment...'
+         onChangeText={comment => setComment(comment)}
+         defaultValue={comment}
+        />
+      </View>
 
     </View>
   )
@@ -92,10 +122,10 @@ export default function App() {
   return (
     <SafeAreaView style={styles.container}>
       <InstaHeader />
-      <View>
-    
-      </View>
       <ScrollView>
+      <View>
+        <InstaStories /> 
+      </View>
       {
       [
         'pripinheiro', 
@@ -106,7 +136,6 @@ export default function App() {
         <InstaCards key={githubUser} githubUser={githubUser}/>
         )}
       </ScrollView>
-      <StatusBar style="auto" />
     </SafeAreaView>
   );
 }
@@ -115,6 +144,54 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+  },
+
+  header: {
+    flexDirection: 'row',
+    padding: 5,
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+
+  nameHeader: {
+    flexDirection: 'row',
+    padding: 10,
+    alignItems: 'center',
+    fontSize: 50,
+  },
+
+  logoHeader: {
+    fontSize: 25,
+  },
+
+  iconsHeader: {
+    flexDirection: 'row',
+    padding: 10,
+    alignItems: 'center',
+  },
+
+  headerAdd: {
+    marginRight: 10
+  },
+
+  headerHistoric: {
+    marginRight: 10
+  },
+
+  stories: {
+    flexDirection: 'row' 
+  },
+
+  profileStories: {
+    marginLeft: 10,
+    alignItems: 'center'
+  },
+
+  imageStories: {
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    marginBottom: 5
   },
 
   cards: {
@@ -128,6 +205,11 @@ const styles = StyleSheet.create({
     width: 40,
     height: 40,
     borderRadius: 20,
+  },
+
+  profileName: {
+    fontSize: 18,
+    fontWeight: '600'
   },
 
   profileContent: {
@@ -157,44 +239,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 
-  header: {
+  addComment: {
     flexDirection: 'row',
-    padding: 5,
-    alignItems: 'center',
-    justifyContent: 'space-between',
   },
 
-  nameHeader: {
-    flexDirection: 'row',
-    padding: 10,
-    alignItems: 'center',
-  },
-
-  iconsHeader: {
-    flexDirection: 'row',
-    padding: 10,
-    alignItems: 'center',
-  },
-
-  headerAdd: {
-    marginRight: 10
-  },
-
-  headerHistoric: {
-    marginRight: 10
-  },
-
-  stories: {
-   flexDirection: 'row' 
-  },
-
-  profileStories: {
-    
+  imageComment: {
+    marginLeft: 15,
+    marginRight: 15,
+    width: 20,
+    height: 20,
+    borderRadius: 10,
   }
-
-
-
-
-
-
 });
